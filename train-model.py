@@ -236,43 +236,42 @@ class GPT(nn.Module):
 
 # -------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+device = "cpu"
+if torch.cuda.is_available():
+    device = "cuda"
+elif hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
+    device = "mps"
+print(f"using device: {device}")
+
 num_return_sequences = 5
 max_length = 30
-device = 'cpu'
 
 model = GPT.from_pretrained('gpt2')
+model.to(device)             
 model.eval()
-# model.to('cuda') # need to get a gpu cluster
-
 
 import tiktoken
 enc = tiktoken.get_encoding('gpt2')
 tokens = enc.encode("Hello, I am Language Model")
-tokens = torch.tensor(tokens, dtype = torch.long)
-tokens = tokens.unsqueeze(0).repeat( num_return_sequences, 1) 
-
+x = torch.tensor(tokens, dtype=torch.long).unsqueeze(0).repeat(num_return_sequences, 1).to(device)
 
 torch.manual_seed(42)
 
+if device == "cuda":
+    torch.cuda.manual_seed(42)
 
-while tokens.size(1) < max_length:
+while x.size(1) < max_length:
     with torch.no_grad():
-        logits , _ = model(tokens)
-        logits = logits[:,-1,:]
-        probs = F.softmax(logits,dim = -1)
-        topk_probs,topk_indices = torch.topk( probs , 50 ,dim = -1) 
-        ix = torch.multinomial(topk_probs,1)
-        xcol = torch.gather(topk_indices,-1,ix)
-        tokens = torch.cat((tokens,xcol),dim = 1)
+        logits, _ = model(x)        
+        logits = logits[:, -1, :]
+        probs = F.softmax(logits, dim=-1)
 
+        topk_probs, topk_indices = torch.topk(probs, 50, dim=-1)
+        ix = torch.multinomial(topk_probs, 1)
+        xcol = torch.gather(topk_indices, -1, ix)
+        x = torch.cat((x, xcol), dim=1)
 
 for i in range(num_return_sequences):
-    row = tokens[i, :max_length].tolist()
-    decoded = enc.decode(row)
-    print(">", decoded)
-
-# for i in range(num_return_sequences):
-#     tokens = tokens[i,:max_length].tolist()
-#     decoded = enc.decode(tokens)
-#     print(">",decoded)
-
+    row = x[i, :max_length].tolist()
+    print(">", enc.decode(row))
