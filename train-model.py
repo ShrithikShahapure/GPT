@@ -84,13 +84,15 @@ class GPT(nn.Module):
 
         self.transformer= nn.ModuleDict(dict(
             wte  = nn.Embedding(config.vocab_size,config.n_embd),
-            wpe  = nn.Embedding(config.vocab_size,config.n_embd),
+            wpe  = nn.Embedding(config.block_size,config.n_embd),
             h    = nn.ModuleList([Block(config) for _ in range (config.n_layer)]),
             ln_f = nn.LayerNorm(config.n_embd),
 
         ))
+        self.lm_head = nn.Linear(config.n_embd,config.vocab_size, bias=False)
 
-        self.lm_head = nn.Linear(config.n_embd,config.vocab_size, bias = False)
+
+
     
     def _init_weights(self, module):
         if isinstance(module, nn.Linear):
@@ -175,21 +177,6 @@ class GPT(nn.Module):
 
         return model
             
-# -------------------------------------------------------------------------------------------------------------------
-# logs
-
-# /Users/shrithkshahapure/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
-#   warnings.warn(
-# Loading weights from GPT: %s gpt2
-# Traceback (most recent call last):
-#   File "/Users/shrithkshahapure/repos/ml-training/GPT/train-model.py", line 355, in <module>
-#     model = GPT.from_pretrained('gpt2')
-#   File "/Users/shrithkshahapure/repos/ml-training/GPT/train-model.py", line 172, in from_pretrained
-#     assert sd_hf[k].shape == sd[k].shape
-# AssertionError
-
-
-# -------------------------------------------------------------------------------------------------------------------
 
 model = GPT.from_pretrained('gpt2')
 print("Did not crash lmao")
