@@ -262,7 +262,7 @@ def get_most_likely_row(tokens, mask, logits):
 
 # -----------------------------------------------------------------------------
 
-# torchrun --standalone --nproc_per_node=8 train_gpt2.py
+# torchrun --standalone --nproc_per_node=8 train-model.py
 
 
 from torch.distributed import init_process_group, destroy_process_group
