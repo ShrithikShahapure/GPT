@@ -7,7 +7,6 @@ from trl import SFTTrainer, DataCollatorForCompletionOnlyLM
 
 def to_single_turn_text(example):
     msgs = example["messages"]
-    # Expect alternating user/assistant; take the first pair for stable SFT.
     user = next(m["content"] for m in msgs if m["role"] == "user")
     assistant = next(m["content"] for m in msgs if m["role"] == "assistant")
     text = f"User: {user}\nAssistant: {assistant}"
@@ -37,11 +36,10 @@ def main(
         lora_dropout=0.05,
         bias="none",
         task_type="CAUSAL_LM",
-        target_modules=["c_attn", "c_proj", "c_fc"],  # GPT-2 style
+        target_modules=["c_attn", "c_proj", "c_fc"],  
     )
     model = get_peft_model(model, lora)
 
-    # Train only on the assistant completion tokens
     collator = DataCollatorForCompletionOnlyLM(
         response_template="Assistant:",
         tokenizer=tok,
