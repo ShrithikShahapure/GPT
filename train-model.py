@@ -209,9 +209,7 @@ class DataLoaderLite:
         self.process_rank = process_rank
         self.num_processes = num_processes
         assert split in {'train', 'val'}
-
-        
-        data_root = "edu_fineweb10B"
+        data_root = "edu_finewebD10B"
         shards = os.listdir(data_root)
         shards = [s for s in shards if split in s]
         shards = sorted(shards)
@@ -262,7 +260,7 @@ def get_most_likely_row(tokens, mask, logits):
 
 # -----------------------------------------------------------------------------
 
-# torchrun --standalone --nproc_per_node=8 train_gpt2.py
+# torchrun --standalone --nproc_per_node=8 train-model.py
 
 
 from torch.distributed import init_process_group, destroy_process_group
