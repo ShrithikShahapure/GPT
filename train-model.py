@@ -221,7 +221,6 @@ class DataLoaderLite:
         self.reset()
 
     def reset(self):
-        
         self.current_shard = 0
         self.tokens = load_tokens(self.shards[self.current_shard])
         self.current_position = self.B * self.T * self.process_rank
@@ -345,7 +344,6 @@ def get_lr(it):
 
 
 optimizer = raw_model.configure_optimizers(weight_decay=0.1, learning_rate=6e-4, device_type=device_type)
-
 
 log_dir = "log"
 os.makedirs(log_dir, exist_ok=True)
