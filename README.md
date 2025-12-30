@@ -1,3 +1,15 @@
+---
+pipeline_tag: text-generation
+language:
+  - en
+tags:
+  - gguf
+  - llama.cpp
+  - gpt2
+  - nanogpt
+license: other
+---
+
 # GPT
 
 This is my own implementation of GPT 2
