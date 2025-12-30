@@ -7,6 +7,7 @@ import torch
 import torch.nn as nn
 from torch.nn import functional as F
 from hellaswag import render_example, iterate_examples
+
 # -----------------------------------------------------------------------------
 
 class CausalSelfAttention(nn.Module):
@@ -209,7 +210,7 @@ class DataLoaderLite:
         self.process_rank = process_rank
         self.num_processes = num_processes
         assert split in {'train', 'val'}
-        data_root = "edu_finewebD10B"
+        data_root = "edu_fineweb10B"
         shards = os.listdir(data_root)
         shards = [s for s in shards if split in s]
         shards = sorted(shards)

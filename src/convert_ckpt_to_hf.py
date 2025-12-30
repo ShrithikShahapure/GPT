@@ -12,10 +12,10 @@ TRANSPOSED_SUFFIXES = (
 def main(ckpt_path: str, out_dir: str):
     ckpt = torch.load(ckpt_path, map_location="cpu")
     sd = ckpt["model"]
-    cfg = ckpt["config"]  # your GPTConfig dataclass saved in train-model.py
+    cfg = ckpt["config"]  
 
     hf_cfg = GPT2Config(
-        vocab_size=cfg.vocab_size,        # you used 50304 in train-model.py
+        vocab_size=cfg.vocab_size,        
         n_positions=cfg.block_size,
         n_ctx=cfg.block_size,
         n_embd=cfg.n_embd,
@@ -28,7 +28,7 @@ def main(ckpt_path: str, out_dir: str):
     model = GPT2LMHeadModel(hf_cfg)
     sd_hf = model.state_dict()
 
-    # Copy weights; match your from_pretrained transpose logic, but in reverse.
+    
     for k in sd_hf.keys():
         if k.endswith(".attn.bias") or k.endswith(".attn.masked_bias"):
             continue
