@@ -23,9 +23,9 @@ You can run this in llama.cpp or if you want to try running this on your ios/and
 
 ### GGUF files (browse in repo)
 - [src/gpt2-Q4_K_M_2.gguf](src/gpt2-Q4_K_M_2.gguf)
-- [src/gpt-f16-2.gguf](src/gpt-f16-2.gguf)
+- [src/gpt-f16-2.gguf](https://github.com/a-ghorbani/pocketpal-ai)
 
-## PocketPal (iOS/Android)
+## [PocketPal (iOS/Android)] (src/gpt-f16-2.gguf)
 1. Open PocketPal → **Models** → **Add / Download** → **Hugging Face**
 2. Search: `svshrithik12/GPT2`
 3. Pick one:
