@@ -58,3 +58,4 @@ log/
 
 # --- model binaries ---
 *.gguf
+
