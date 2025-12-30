@@ -25,8 +25,24 @@ I used an A100 and an 8xA100 GPU cluster, attatched to a filesystem. This setup 
 
 Setup, tokenization, pretraining, sft roughly takes 4 hours.
 
-You can run this in llama.cpp or if you want to try running this on your ios/android device, i reccomend pocketpal. 
+You can run this in llama.cpp or if you want to try running this on your ios/android device, I reccomend pocketpal. 
 
+- **Hugging Face repo:** [svshrithik12/GPT2](https://huggingface.co/svshrithik12/GPT2)
+
+### GGUF downloads (direct)
+- **Q4_K_M (recommended):** [gpt2-Q4_K_M_2.gguf](https://huggingface.co/svshrithik12/GPT2/resolve/main/src/gpt2-Q4_K_M_2.gguf)
+- **f16:** [gpt-f16-2.gguf](https://huggingface.co/svshrithik12/GPT2/resolve/main/src/gpt-f16-2.gguf)
+
+### GGUF files (browse in repo)
+- [src/gpt2-Q4_K_M_2.gguf](src/gpt2-Q4_K_M_2.gguf)
+- [src/gpt-f16-2.gguf](src/gpt-f16-2.gguf)
+
+## PocketPal (iOS/Android)
+1. Open PocketPal → **Models** → **Add / Download** → **Hugging Face**
+2. Search: `svshrithik12/GPT2`
+3. Pick one:
+   - `gpt2-Q4_K_M_2.gguf` (smaller, faster)
+   - `gpt-f16-2.gguf` (larger, higher quality)
 
 ---
 ## Transformer Architecture 
