@@ -59,13 +59,14 @@ def main(
     )
 
     trainer = SFTTrainer(
-        model=model,
-        tokenizer=tok,
-        train_dataset=ds,
-        args=args,
-        max_seq_length=max_seq_len,
-        data_collator=collator,
-        packing=False,
+    model=model,
+    tokenizer=tok,
+    train_dataset=ds,
+    args=args,
+    max_seq_length=max_seq_len,
+    data_collator=collator,
+    packing=False,
+    dataset_text_field="text", 
     )
 
     trainer.train()
