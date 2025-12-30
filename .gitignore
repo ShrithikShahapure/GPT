@@ -42,3 +42,20 @@ env/
 
 # --- OS / misc ---
 Thumbs.db
+
+# --- HF artifacts / outputs ---
+hf_*/
+hf_*
+
+# --- llama.cpp build / vendor dir ---
+llama.cpp/
+
+# --- logs ---
+log/
+
+# --- templates ---
+*.jinja
+
+# --- model binaries ---
+*.gguf
+
