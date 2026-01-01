@@ -16,6 +16,7 @@ Setup, tokenization, pretraining, sft roughly takes 4 hours.
 You can run this in llama.cpp or if you want to try running this on your ios/android device, I reccomend pocketpal. 
 
 - **Hugging Face repo:** [svshrithik12/GPT2](https://huggingface.co/svshrithik12/GPT2)
+- **Blog Post:** [Let's build GPT 2 from Scratch](https://shrithik.hashnode.dev/lets-build-gpt-2-from-scratch)
 
 ### GGUF downloads (direct)
 - **Q4_K_M (recommended):** [gpt2-Q4_K_M_2.gguf](https://huggingface.co/svshrithik12/GPT2/resolve/main/src/gpt2-Q4_K_M_2.gguf)
